@@ -40,6 +40,7 @@ module NestedForm
         blueprint = {:id => fields_blueprint_id, :style => 'display: none'}
         block, options = @fields[fields_blueprint_id].values_at(:block, :options)
         options[:child_index] = "new_#{association}"
+        options[:parent_builder] = self
         blueprint[:"data-blueprint"] = fields_for(association, model_object, options, &block).to_str
         @template.content_tag(:div, nil, blueprint)
       end
